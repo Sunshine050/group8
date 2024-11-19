@@ -10,3 +10,7 @@
     "dev": "nodemon server.js"
   },
 6) npm run dev
+
+
+ลิงค์ postman รวม api ทั้งหมดที่ต้องใช้
+https://app.getpostman.com/join-team?invite_code=b56024ebfae5db5ad39878663ec302a9&target_code=920bb7c544e66f86fdaeee936e5dcc76
