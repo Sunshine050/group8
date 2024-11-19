@@ -22,7 +22,7 @@ const authController = {
       const token = jwt.sign(
         { id: user.id, role: user.role },
         process.env.JWT_SECRET,
-        { expiresIn: '24h' }
+        { expiresIn: '48h' }
       );
 
       res.json({ token, role: user.role });

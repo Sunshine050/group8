@@ -16,7 +16,7 @@ router.post('/create',verifyToken, roomController.createRoom);
 //----------------------------------------------------------------------------------------------------//
 
 // เส้นทางสำหรับแก้ไขข้อมูลทั่วไปของห้อง (ต้องระบุ ID ของห้องที่ต้องการแก้ไข)
-router.put('/edit/:id',verifyToken, roomController.editRoom);
+router.put('/edit',verifyToken, roomController.editRoom);
 
 //----------------------------------------------------------------------------------------------------//
 

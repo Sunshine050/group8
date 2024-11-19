@@ -34,7 +34,7 @@ const User = {
         const { username, email, password } = userData;
         return new Promise((resolve, reject) => {
             db.query(
-                'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+                'INSERT INTO users (username, email, password ) VALUES (?, ?, ?)',
                 [username, email, password],
                 (err, results) => {
                     if (err) return reject(err);

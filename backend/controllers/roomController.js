@@ -67,14 +67,14 @@ const roomController = {
 
     // การแก้ไขข้อมูลห้องทั่วไป
     editRoom: async (req, res) => {
-        const { id, roomName, description } = req.body;
+        const { id, room_name, description } = req.body;
 
         try {
-            if (!id || !roomName || !description) {
+            if (!id || !room_name || !description) {
                 return res.status(400).json({ message: 'Invalid input' });
             }
 
-            await Room.edit(id, { room_name: roomName, description });
+            await Room.edit(id, { room_name: room_name, description });
             res.json({ message: 'Room details updated successfully' });
         } catch (err) {
             console.error('Error updating room details:', err);
