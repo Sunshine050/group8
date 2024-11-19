@@ -1,5 +1,7 @@
 const db = require('../config/database');
 
+//----------------------------------------------------------------------------------------------------//
+
 const Booking = {
   create: ({ userId, roomId, reason }) => {
     return new Promise((resolve, reject) => {
@@ -14,6 +16,8 @@ const Booking = {
     });
   },
 
+  //----------------------------------------------------------------------------------------------------//
+
   updateStatus: (id, status) => {
     return new Promise((resolve, reject) => {
       db.query('UPDATE bookings SET status = ? WHERE id = ?', [status, id], (err, results) => {
@@ -22,6 +26,8 @@ const Booking = {
       });
     });
   },
+
+  //----------------------------------------------------------------------------------------------------//
 
   getById: (id) => {
     return new Promise((resolve, reject) => {
@@ -32,6 +38,8 @@ const Booking = {
     });
   },
 
+  //----------------------------------------------------------------------------------------------------//
+
   getByUserId: (userId) => {
     return new Promise((resolve, reject) => {
       db.query('SELECT * FROM bookings WHERE user_id = ?', [userId], (err, results) => {
@@ -40,6 +48,8 @@ const Booking = {
       });
     });
   },
+
+  //----------------------------------------------------------------------------------------------------//
 
   findAll: (conditions) => {
     return new Promise((resolve, reject) => {
@@ -52,5 +62,7 @@ const Booking = {
     });
   }
 };
+
+//----------------------------------------------------------------------------------------------------//
 
 module.exports = Booking;
