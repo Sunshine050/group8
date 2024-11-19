@@ -12,39 +12,36 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _studentIDController = TextEditingController();
+  // final TextEditingController _nameController = TextEditingController();
+  // final TextEditingController _studentIDController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _rePasswordController = TextEditingController();
-
+  // final TextEditingController _rePasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   bool _isLoading = false;
   String? _errorMessage;
 
   Future<void> _signUp() async {
-    final name = _nameController.text;
+    // final name = _nameController.text;
     final username = _usernameController.text;
-    final studentID = _studentIDController.text;
+    // final studentID = _studentIDController.text;
     final password = _passwordController.text;
-    final rePassword = _rePasswordController.text;
+    // final rePassword = _rePasswordController.text;
+    final email = _emailController.text;
 
     // Validate inputs
-    if (name.isEmpty ||
-        username.isEmpty ||
-        studentID.isEmpty ||
-        password.isEmpty ||
-        rePassword.isEmpty) {
+    if (username.isEmpty || password.isEmpty || email.isEmpty) {
       setState(() {
         _errorMessage = 'All fields are required.';
       });
       return;
     }
-    if (password != rePassword) {
-      setState(() {
-        _errorMessage = 'Passwords do not match.';
-      });
-      return;
-    }
+    // if (password != rePassword) {
+    //   setState(() {
+    //     _errorMessage = 'Passwords do not match.';
+    //   });
+    //   return;
+    // }
 
     setState(() {
       _isLoading = true;
@@ -52,12 +49,16 @@ class _SignUpState extends State<SignUp> {
     });
 
     final url =
-        Uri.parse('http://192.168.1.165:3000/register'); // Update API URL
+        Uri.parse('http://192.168.206.1:5000/auth/register'); // Update API URL
     final body = {
-      'name': name,
+      // 'name': name,
+      // 'username': username,
+      // 'password': password,
+      // 'std_id': studentID,
+
       'username': username,
-      'password': password,
-      'std_id': studentID,
+      'email': email,
+      'password': password
     };
 
     try {
@@ -69,7 +70,7 @@ class _SignUpState extends State<SignUp> {
 
       if (response.statusCode == 200) {
         // Success response
-        setState(() { 
+        setState(() {
           _errorMessage = null;
         });
         // Navigate to login on success
@@ -122,19 +123,21 @@ class _SignUpState extends State<SignUp> {
                 color: Colors.black,
               ),
             ),
-            const SizedBox(height: 30),
-            _buildTextField('Name Surname', controller: _nameController),
+            // const SizedBox(height: 30),
+            // _buildTextField('Name Surname', controller: _nameController),
             const SizedBox(height: 15),
             _buildTextField('Username',
                 controller: _usernameController), // New field
-            const SizedBox(height: 15),
-            _buildTextField('Student ID', controller: _studentIDController),
+            // const SizedBox(height: 15),
+            // _buildTextField('Student ID', controller: _studentIDController),
             const SizedBox(height: 15),
             _buildTextField('Password',
                 obscureText: true, controller: _passwordController),
+            // const SizedBox(height: 15),
+            // _buildTextField('Re-password',
+            //     obscureText: true, controller: _rePasswordController),
             const SizedBox(height: 15),
-            _buildTextField('Re-password',
-                obscureText: true, controller: _rePasswordController),
+            _buildTextField('Email', controller: _emailController),
             const SizedBox(height: 30),
             if (_errorMessage != null)
               Padding(

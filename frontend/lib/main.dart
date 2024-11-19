@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/login/home2.dart';
+import 'package:myapp/Home/home_std_1.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: Home2(),
+  runApp(MaterialApp(
+    home: homsstudent(),
     debugShowCheckedModeBanner: false,
     // home:
   ));

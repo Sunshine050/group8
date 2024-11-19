@@ -2,37 +2,39 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class HomeStd extends StatefulWidget {
-  HomeStd({super.key});
+class homsstudent extends StatefulWidget {
+  homsstudent({super.key});
 
   @override
   _HomeStdState createState() => _HomeStdState();
 }
 
-class _HomeStdState extends State<HomeStd> {
+class _HomeStdState extends State<homsstudent> {
   List<Room> rooms = [];
 
-  @override
-  void initState() {
-    super.initState();
-    fetchRooms();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchRooms();
+  // }
 
-  // Fetch rooms from API
-  Future<void> fetchRooms() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.1.165:3000/home'));
+  // // Fetch rooms from API
+  // Future<void> fetchRooms() async {
+  //   final response =
 
-    if (response.statusCode == 200) {
-      List<dynamic> roomData = json.decode(response.body);
-      setState(() {
-        rooms = roomData.map((data) => Room.fromJson(data)).toList();
-      });
-    } else {
-      // Handle error response
-      print('Failed to load rooms');
-    }
-  }
+  //       await http.get(Uri.parse('http://10.0.2.2:5000/rooms/all'));
+
+  //   if (response.statusCode == 200) {
+
+  //     print(response.body);
+  //     List<dynamic> roomData = json.decode(response.body);
+  //     setState(() {
+  //       rooms = roomData.map((data) => Room.fromJson(data)).toList();
+  //     });
+  //   } else {
+  //     print('Failed to load rooms');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +139,7 @@ class _RoomCardState extends State<RoomCard> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.network(
-                    widget.room.image, // Use image URL
+                    widget.room.image,
                     width: 120,
                     height: 100,
                     fit: BoxFit.cover,

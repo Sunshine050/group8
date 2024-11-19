@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'dart:convert'; // For JSON encoding/decoding
 
 import 'package:myapp/Home/home.dart';
@@ -24,11 +26,12 @@ class _LoginState extends State<Login> {
     });
 
     final url = Uri.parse(
-        'http://192.168.1.165:3000/login'); // Replace with your API URL
+        'http://10.0.2.2:5000/auth/login'); // Replace with the correct URL for the emulator or real device
     final body = {
       'username': _studentIDController.text,
       'password': _passwordController.text,
     };
+    print('Login Request Body: $body');
 
     try {
       final response = await http.post(
@@ -37,11 +40,12 @@ class _LoginState extends State<Login> {
         body: json.encode(body),
       );
 
+      print('Response Status: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+
       if (response.statusCode == 200) {
-        // Parse the response
         final data = json.decode(response.body);
         if (data['success']) {
-          // Navigate to the home screen if login is successful
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
